@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { CardList } from "./components/card-list/Card-list";
 import { SearchBox } from "./components/search-box/Search-box";
+import { Choise } from "./components/choise/Choise";
 
 class App extends React.Component {
   constructor() {
@@ -9,7 +10,8 @@ class App extends React.Component {
 
     this.state = {
       monsters: [],
-      searchField: ""
+      searchField: "",
+      entity:2
     };
   }
   componentDidMount() {
@@ -20,9 +22,12 @@ class App extends React.Component {
   handleChange = e => {
     this.setState({ searchField: e.target.value });
   };
+  handleClick = e => {
+    this.setState({ entity: e });
+  };
 
   render() {
-    const { monsters, searchField } = this.state;
+    const { monsters, searchField, entity } = this.state;
     const filteredMonsers = monsters.filter(monster =>
       monster.name.toLowerCase().includes(searchField.toLocaleLowerCase())
     );
@@ -32,8 +37,8 @@ class App extends React.Component {
         <SearchBox
           placeholder="Search Monsters"
           handleChange={this.handleChange}
-        />
-        <CardList monsters={filteredMonsers} />
+        /><Choise handleClick={this.handleClick} />
+        <CardList monsters={filteredMonsers} entity={entity} />
       </div>
     );
   }

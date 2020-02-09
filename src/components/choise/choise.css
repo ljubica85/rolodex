@@ -1,0 +1,10 @@
+.flex {
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  margin: 5px auto;
+}
+.choise-button {
+  background-color: transparent;
+  border: none;
+}
