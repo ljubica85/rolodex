@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { CardList } from "./components/card-list/Card-list";
 import { SearchBox } from "./components/search-box/Search-box";
-import { Choise } from "./components/choise/Choise";
+import { Choice } from "./components/choice/Choice";
 
 class App extends React.Component {
   constructor() {
@@ -11,7 +11,8 @@ class App extends React.Component {
     this.state = {
       monsters: [],
       searchField: "",
-      entity:2
+      entity:2,
+      title:'Monsters'
     };
   }
   componentDidMount() {
@@ -23,7 +24,9 @@ class App extends React.Component {
     this.setState({ searchField: e.target.value });
   };
   handleClick = e => {
-    this.setState({ entity: e });
+    const choice = ['Robo', 'Monster', 'Robo-head', 'Kitty']
+    const title = choice[e-1];
+    this.setState({ entity: e , title:title});
   };
 
   render() {
@@ -33,11 +36,11 @@ class App extends React.Component {
     );
     return (
       <div className="App">
-        <h1>Monsters Roloodex</h1>
+        <h1>{this.state.title} Roloodex</h1>
         <SearchBox
           placeholder="Search Monsters"
           handleChange={this.handleChange}
-        /><Choise handleClick={this.handleClick} />
+        /><Choice handleClick={this.handleClick} />
         <CardList monsters={filteredMonsers} entity={entity} />
       </div>
     );
